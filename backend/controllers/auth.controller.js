@@ -7,7 +7,7 @@ const generateTokens = (userId) => {
     expiresIn: "15m",
   });
 
-  const refreshToken = jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
+  const refreshToken = jwt.sign({ userId }, process.env.REFRESH_TOKEN_SECRET, {
     expiresIn: "7d",
   });
 
@@ -34,6 +34,7 @@ const setCookies = (res, accessToken, refreshToken) => {
     maxAge: 15 * 60 * 1000, //fifteen minutes
   });
 
+  //first parameter is the name of the token that is stored in cookie
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true, //prevents XXS attacks, cross-site-scripting
     secure: process.env.NODE_ENV === "production", //only in prod these preventions occur
@@ -63,25 +64,61 @@ export const signup = async (req, res) => {
 
     //201 means "something was created"
     res.status(201).json({
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-      },
-      message: "User created successfully",
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
     });
   } catch (error) {
+    console.log("Error in signup controller", error.message);
     res.status(500).json({ message: error.message });
   }
 };
 
 export const login = async (req, res) => {
-  res.send("Login route call.");
+  try {
+    const { email, password } = req.body;
+    //brings user from database
+    const user = await User.findOne({ email });
+
+    if (user && (await user.comparePassword(password))) {
+      const { accessToken, refreshToken } = generateTokens(user._id);
+
+      await storeRefreshToken(user._id, refreshToken);
+      setCookies(res, accessToken, refreshToken);
+
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      });
+    } else {
+      res.status(401).json({ message: "Invalid Email or Password" });
+    }
+  } catch (error) {
+    console.log("Error in login controller", error.message);
+    res.status(500).json({ message: error.message });
+  }
 };
 
 export const logout = async (req, res) => {
-  res.send("Logout route call.");
-};
+  try {
+    const refreshToken = req.cookies.refreshToken;
+    if (refreshToken) {
+      //decrypts the token from database using the key from .env
+      const decoded = jwt.verify(
+        refreshToken,
+        process.env.REFRESH_TOKEN_SECRET
+      );
+      await redis.del(`refresh_token:${decoded.userId}`);
+    }
 
-// KZzTb9QRrkyWgSUi
+    res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
+    res.json({ message: "Logged out successfully" });
+  } catch (error) {
+    console.log("Error in logout controller", error.message);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};

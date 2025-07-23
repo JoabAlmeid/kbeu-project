@@ -57,8 +57,8 @@ userSchema.pre("save", async function (next) {
 });
 
 //compares the password the user is sending to the one already hashed in database
-userSchema.method.comparePassword = async function (password) {
-  return bcryp.compare(password, this.password);
+userSchema.methods.comparePassword = async function (password) {
+  return bcrypt.compare(password, this.password);
 };
 
 //makes the model "User" and uses userSchema as reference of object user
