@@ -8,7 +8,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use("/api/auth", authRoutes);
+app.use(express.json()); //allows to parse body from frontend
+
+app.use("/api/auth", authRoutes); //allows navigation through signup, login, logout, etc
 
 app.listen(PORT, () => {
   console.log("Server is running on http://localhost:" + PORT);
