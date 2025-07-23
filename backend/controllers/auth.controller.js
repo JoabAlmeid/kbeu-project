@@ -122,3 +122,42 @@ export const logout = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+//this will refresh the access token
+export const refreshToken = async (req, res) => {
+  try {
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!refreshToken) {
+      res.status(401).json({ message: "No refresh token provided" });
+    }
+    const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+    const storedToken = await redis.get(`refresh_token:${decoded.userId}`);
+
+    //check if token is still valid
+    if (storedToken !== refreshToken) {
+      res.status(401).json({ message: "No refresh token provided" });
+    }
+    const accessToken = jwt.sign(
+      { userId: decoded.userId },
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: "15m",
+      }
+    );
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true, //prevents XXS attacks, cross-site-scripting
+      secure: process.env.NODE_ENV === "production", //only in prod these preventions occur
+      sameSite: "strict", //prevents CSRF attacks, cross-site-request-forgery
+      maxAge: 15 * 60 * 1000, //fifteen minutes
+    });
+
+    res.json({ message: "Token refreshed successfully" });
+  } catch (error) {
+    console.log("Error in refreshToken controller", error.message);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+// TODO implement get profile later
+// export const getProfile = async (req, res) => {};
