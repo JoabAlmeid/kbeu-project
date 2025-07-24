@@ -6,6 +6,7 @@ import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
 import cartRoutes from "./routes/cart.routes.js";
 import couponRoutes from "./routes/coupon.route.js";
+import paymentRoutes from "./routes/payment.routes.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use("/api/auth", authRoutes); //allows navigation through signup, login, log
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/coupons", couponRoutes);
+app.use("/api/payment", paymentRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
