@@ -43,7 +43,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-//a presave hook to hash password before sending to database
+//a presave hook to hash password before sending to database. Happens before .save()
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
