@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import cartRoutes from "./routes/cart.routes.js";
 import couponRoutes from "./routes/coupon.route.js";
 import paymentRoutes from "./routes/payment.routes.js";
+import analyticsRoutes from "./routes/analystics.route.js";
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/coupons", couponRoutes);
 app.use("/api/payment", paymentRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
