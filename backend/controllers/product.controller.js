@@ -122,7 +122,7 @@ export const getProductsByCategory = async (req, res) => {
 
   try {
     const products = await Product.find({ category });
-    res.json(products);
+    res.json({ products }); //as chaves transformam o products em objeto dentro do json
   } catch (error) {
     console.log("Error in getRecommendedProducts controller", error.message);
     res.status(500).json({ message: "Server error", error: error.message });
