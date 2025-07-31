@@ -8,7 +8,7 @@ export const getCartProducts = async (req, res) => {
     //add quantity for each product, associating each cartItem with existing productId
     const cartItems = products.map((product) => {
       const item = req.user.cartItems.find(
-        (cartItem) => cartItem.id === productId
+        (cartItem) => cartItem.id === product.id
       );
       //returns a new object(bc map) combining the product data with updated quantity
       return { ...product.toJSON(), quantity: item.quantity };
