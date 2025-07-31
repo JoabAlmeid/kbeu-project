@@ -88,8 +88,7 @@ export const deleteProduct = async (req, res) => {
     //deletes from databases other than cloudinary
     await Product.findByIdAndDelete(req.params.id);
 
-    res.json;
-    ({ message: "Product deleted successfully" });
+    res.json({ message: "Product deleted successfully" });
   } catch (error) {
     console.log("Error in deleteProduct controller", error.message);
     res.status(500).json({ message: "Server error", error: error.message });
@@ -150,9 +149,9 @@ export const toggleFeaturedProduct = async (req, res) => {
 async function updateFeaturedProductsCache() {
   try {
     //.lean() returns plain javascript object instead of mongodb document/object. +Faster
-    const featured_products = await Product.find({ isFeatured: true }).lean();
+    const featuredProducts = await Product.find({ isFeatured: true }).lean();
     await redis.set("featured_products", JSON.stringify(featuredProducts));
   } catch (error) {
-    console.log("Error in update cache funcion");
+    console.log("error in update cache function");
   }
 }

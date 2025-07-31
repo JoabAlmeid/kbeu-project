@@ -14,7 +14,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(express.json()); //allows to parse body from frontend
+app.use(express.json({ limit: "10mb" })); //allows to parse body from frontend
 app.use(cookieParser()); //allows to parse refreshToken from cookie
 
 app.use("/api/auth", authRoutes); //allows navigation through signup, login, logout, etc
