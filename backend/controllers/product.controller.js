@@ -87,6 +87,7 @@ export const deleteProduct = async (req, res) => {
 
     //deletes from databases other than cloudinary
     await Product.findByIdAndDelete(req.params.id);
+    await updateFeaturedProductsCache();
 
     res.json({ message: "Product deleted successfully" });
   } catch (error) {
@@ -98,7 +99,7 @@ export const deleteProduct = async (req, res) => {
 export const getRecommendedProducts = async (req, res) => {
   try {
     const products = await Product.aggregate([
-      { $sample: { size: 3 } },
+      { $sample: { size: 4 } },
       {
         $project: {
           _id: 1,

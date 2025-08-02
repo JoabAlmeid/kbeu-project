@@ -72,7 +72,7 @@ export const useProductStore = create((set) => ({
 
       // this will update the isFeatured prop of the product
       //bring all the products already in the 'products' json
-      // if their id is the some one as the product in the db, then change it
+      // if their id is the same one as the product in the db, then change it
       //or else, just leave it like that
 
       set((prevProducts) => ({
