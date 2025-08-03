@@ -21,7 +21,7 @@ app.use("/api/auth", authRoutes); //allows navigation through signup, login, log
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/coupons", couponRoutes);
-app.use("/api/payment", paymentRoutes);
+app.use("/api/payments", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
 app.use((err, req, res, next) => {

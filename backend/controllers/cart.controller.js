@@ -2,22 +2,20 @@ import Product from "../models/product.model.js";
 
 export const getCartProducts = async (req, res) => {
   try {
-    //inside user there is (FK)user.product: only has ID. It takes id from Product model
     const products = await Product.find({ _id: { $in: req.user.cartItems } });
 
-    //add quantity for each product, associating each cartItem with existing productId
+    // add quantity for each product
     const cartItems = products.map((product) => {
       const item = req.user.cartItems.find(
         (cartItem) => cartItem.id === product.id
       );
-      //returns a new object(bc map) combining the product data with updated quantity
       return { ...product.toJSON(), quantity: item.quantity };
     });
 
     res.json(cartItems);
   } catch (error) {
     console.log("Error in getCartProducts controller", error.message);
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 };
 

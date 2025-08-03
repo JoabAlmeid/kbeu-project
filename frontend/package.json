@@ -15,7 +15,16 @@
     "postcss": "^8.5.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "lucide-react": "^0.525.0",
+    "react-confetti": "^6.4.0",
+    "react-hot-toast": "^2.5.2",
+    "react-router-dom": "^7.7.1",
+    "recharts": "^3.1.0",
+    "zustand": "^5.0.6",
+    "axios": "^1.11.0",
+    "framer-motion": "^12.23.9",
+    "@stripe/stripe-js": "^7.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",

@@ -1,7 +1,7 @@
 import express from "express";
 import { protectRoute } from "../middleware/auth.middleware.js";
 import {
-  CheckoutSuccess,
+  checkoutSuccess,
   createCheckoutSession,
 } from "../controllers/payment.controller.js";
 import { stripe } from "../lib/stripe.js";
@@ -10,5 +10,5 @@ const router = express.Router();
 
 //this one is really prone to error
 router.post("/create-checkout-session", protectRoute, createCheckoutSession);
-router.post("/checkout-success", protectRoute, CheckoutSuccess);
+router.post("/checkout-success", protectRoute, checkoutSuccess);
 export default router;
