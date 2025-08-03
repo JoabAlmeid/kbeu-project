@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get("/", protectRoute, adminRoute, async (req, res) => {
   try {
-    const analysticsData = await getAnalyticsData();
+    const analyticsData = await getAnalyticsData();
 
     //now, for the graphic, we need the start point being seven days back
     const endDate = new Date();
@@ -18,7 +18,7 @@ router.get("/", protectRoute, adminRoute, async (req, res) => {
     const dailySalesData = await getDailySalesData(startDate, endDate);
 
     res.json({
-      analysticsData,
+      analyticsData,
       dailySalesData,
     });
   } catch (error) {
