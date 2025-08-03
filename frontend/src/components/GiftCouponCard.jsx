@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useCartStore } from "../stores/useCartStore";
 
 const GiftCouponCard = () => {
@@ -7,12 +7,24 @@ const GiftCouponCard = () => {
   const { coupon, isCouponApplied, applyCoupon, getMyCoupon, removeCoupon } =
     useCartStore();
 
+  useEffect(() => {
+    getMyCoupon();
+  }, [getMyCoupon]);
+
+  useEffect(() => {
+    if (coupon) {
+      setUserInputCode(coupon.code);
+    }
+  }, [coupon]);
+
   const handleApplyCoupon = () => {
-    console.log(userInputCode);
+    if (!userInputCode) return;
+    applyCoupon(userInputCode);
   };
 
   const handleRemoveCoupon = async () => {
-    console.log("Remove coupon");
+    await removeCoupon();
+    setUserInputCode("");
   };
 
   return (
@@ -53,7 +65,6 @@ const GiftCouponCard = () => {
           Apply Code
         </motion.button>
       </div>
-
       {isCouponApplied && coupon && (
         <div className="mt-4">
           <h3 className="text-lg font-medium text-gray-300">Applied Coupon</h3>
@@ -89,5 +100,4 @@ const GiftCouponCard = () => {
     </motion.div>
   );
 };
-
 export default GiftCouponCard;
