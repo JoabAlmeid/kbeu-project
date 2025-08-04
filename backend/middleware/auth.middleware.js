@@ -4,37 +4,41 @@ import User from "../models/user.model.js";
 export const protectRoute = async (req, res, next) => {
   try {
     const accessToken = req.cookies.accessToken;
+
+    // 1. Check if token exists
     if (!accessToken) {
-      res
-        .status(401)
-        .json({ message: "Unauthorized - No access token provided" });
+      return res.status(401).json({
+        message: "Unauthorized - No access token provided",
+      });
     }
 
-    try {
-      const decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-      //this will get the whole user by id. The -password excludes it
-      const user = await User.findById(decoded.userId).select("-password");
+    // 2. Verify token
+    const decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
 
-      if (!user) {
-        res.status(401).json({ message: "User not found" });
-      }
+    // 3. Get user
+    const user = await User.findById(decoded.userId).select("-password");
 
-      req.user = user;
-
-      next();
-    } catch (error) {
-      if (error.name === "TokenExpiredError") {
-        return res
-          .status(401)
-          .json({ message: "Unauthorized - Access token expired" });
-      }
-      throw error;
+    if (!user) {
+      return res.status(401).json({
+        message: "Unauthorized - User not found",
+      });
     }
+
+    // 4. Attach user to request
+    req.user = user;
+    next();
   } catch (error) {
-    console.log("Error in protectRoute middleware", error.message);
-    return res
-      .status(401)
-      .json({ message: "Unauthorized - Invalid access token" });
+    console.log("Error in protectRoute middleware:", error.message);
+
+    if (error.name === "TokenExpiredError") {
+      return res.status(401).json({
+        message: "Unauthorized - Access token expired",
+      });
+    }
+
+    return res.status(401).json({
+      message: "Unauthorized - Invalid access token",
+    });
   }
 };
 
@@ -42,6 +46,8 @@ export const adminRoute = async (req, res, next) => {
   if (req.user && req.user.role === "admin") {
     next();
   } else {
-    return res.status(403).json({ message: "Access denied - Admin only" });
+    return res.status(403).json({
+      message: "Access denied - Admin only",
+    });
   }
 };
