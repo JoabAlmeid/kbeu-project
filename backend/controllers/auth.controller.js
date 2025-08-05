@@ -31,7 +31,7 @@ const setCookies = (res, accessToken, refreshToken) => {
     httpOnly: true, //prevents XXS attacks, cross-site-scripting
     secure: process.env.NODE_ENV === "production", //only in prod these preventions occur
     sameSite: "strict", //prevents CSRF attacks, cross-site-request-forgery
-    maxAge: 15 * 60 * 1000, //fifteen minutes
+    maxAge: 30 * 60 * 1000, //thirty minutes
   });
 
   //first parameter is the name of the token that is stored in cookie
