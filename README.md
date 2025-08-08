@@ -81,13 +81,14 @@ cd kbeu-project
 npm install
 npm run dev
 
-✅ Variáveis do .env necessárias para rodar localmente:
+📦 Variáveis do .env necessárias para rodar localmente:
+
 PORT= a porta que vai rodar o localhost
 MONGO_URI= chave do Mongodb
 retryWrites= "senha" do cluster do Mongodb
-UPSTASH_REDIS_URL= chave do Redius pela plataforma Upstash
+UPSTASH_REDIS_URL= chave do Redis pela plataforma Upstash
 
-ACCESS_TOKEN_SECRET && REFRESH_TOKEN_SECRET=  ambos são definidos durante a execução
+ACCESS_TOKEN_SECRET && REFRESH_TOKEN_SECRET= ambos são definidos durante a execução
 
 CLOUDINARY_CLOUD_NAME= conexão com o seu estoque da Cloudinary
 CLOUDINARY_API_KEY= chave da API
@@ -97,7 +98,7 @@ STRIPE_SECRET_KEY= "senha" do Stripe
 PUBLIC_STRIPE_KEY= chave de API pública do Stripe
 
 CLIENT_URL= seu localhost com a porta que vai usar
-NODE_ENV=development (torna dinâmico quando lança pro prod)
+NODE_ENV= development (torna dinâmico quando lança pro prod)
 
 💼 Por que este projeto importa?
 
