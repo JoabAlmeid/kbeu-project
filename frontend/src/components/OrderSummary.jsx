@@ -46,12 +46,12 @@ const OrderSummary = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <p className="text-xl font-semibold text-emerald-400">Order summary</p>
+      <p className="text-xl font-semibold text-emerald-400">Finalizar Compra</p>
       <div className="space-y-4">
         <div className="space-y-2">
           <dl className="flex items-center justify-between gap-4">
             <dt className="text-base font-normal text-gray-300">
-              Original price
+              Preço Original
             </dt>
             <dd className="text-base font-medium text-white">
               ${formattedSubtotal}
@@ -59,7 +59,9 @@ const OrderSummary = () => {
           </dl>
           {savings > 0 && (
             <dl className="flex items-center justify-between gap-4">
-              <dt className="text-base font-normal text-gray-300">Savings</dt>
+              <dt className="text-base font-normal text-gray-300">
+                Descontado
+              </dt>
               <dd className="text-base font-medium text-emerald-400">
                 -${formattedSavings}
               </dd>
@@ -69,7 +71,7 @@ const OrderSummary = () => {
           {coupon && isCouponApplied && (
             <dl className="flex items-center justify-between gap-4">
               <dt className="text-base font-normal text-gray-300">
-                Coupon ({coupon.code})
+                Cupom ({coupon.code})
               </dt>
               <dd className="text-base font-medium text-emerald-400">
                 -{coupon.discountPercentage}%
@@ -90,7 +92,7 @@ const OrderSummary = () => {
           whileTap={{ scale: 0.95 }}
           onClick={handlePayment}
         >
-          Proceed to Checkout
+          Finalizar Compra
         </motion.button>
         <div className="flex items-center justify-center gap-2">
           <span className="text-sm font-normal text-gray-400">or</span>
@@ -98,7 +100,7 @@ const OrderSummary = () => {
             to="/"
             className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 underline hover:text-emerald-300 hover:no-underline"
           >
-            Continue Shopping
+            Continuar Comprando
             <MoveRight size={16} />
           </Link>
         </div>

@@ -45,7 +45,7 @@ const ProductCard = ({ product }) => {
           onClick={handleAddToCart}
         >
           <ShoppingCart size={22} className="mr-2" />
-          Add to cart
+          Adicionar ao carrinho
         </button>
       </div>
     </div>

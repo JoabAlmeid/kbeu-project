@@ -28,7 +28,7 @@ const SignUpPage = () => {
         transition={{ duration: 0.8 }}
       >
         <h2 className="mt-6 text-center text-3xl font-extrabold text-emerald-400">
-          Create your account
+          Crie sua Conta
         </h2>
       </motion.div>
 
@@ -45,7 +45,7 @@ const SignUpPage = () => {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-300"
               >
-                Full name
+                Nome Completo
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -71,7 +71,7 @@ const SignUpPage = () => {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-300"
               >
-                Email address
+                Email
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -99,7 +99,7 @@ const SignUpPage = () => {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-300"
               >
-                Password
+                Senha
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -125,7 +125,7 @@ const SignUpPage = () => {
                 htmlFor="confirmPassword"
                 className="block text-sm font-medium text-gray-300"
               >
-                Confirm Password
+                Confirmar Senha
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -163,24 +163,24 @@ const SignUpPage = () => {
                     className="mr-2 h-5 w-5 animate-spin"
                     aria-hidden="true"
                   />
-                  Loading...
+                  Carregando...
                 </>
               ) : (
                 <>
                   <UserPlus className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Sign up
+                  Cadastrar
                 </>
               )}
             </button>
           </form>
 
           <p className="mt-8 text-center text-sm text-gray-400">
-            Already have an account?{" "}
+            Já possui uma conta?{" "}
             <Link
               to="/login"
               className="font-medium text-emerald-400 hover:text-emerald-300"
             >
-              Login here <ArrowRight className="inline h-4 w-4" />
+              Entre Aqui! <ArrowRight className="inline h-4 w-4" />
             </Link>
           </p>
         </div>

@@ -40,7 +40,7 @@ const GiftCouponCard = () => {
             htmlFor="voucher"
             className="mb-2 block text-sm font-medium text-gray-300"
           >
-            Do you have a voucher or gift card?
+            Você tem um cupom ou voucher?
           </label>
           <input
             type="text"
@@ -62,12 +62,12 @@ const GiftCouponCard = () => {
           whileTap={{ scale: 0.95 }}
           onClick={handleApplyCoupon}
         >
-          Apply Code
+          Aplicar Código
         </motion.button>
       </div>
       {isCouponApplied && coupon && (
         <div className="mt-4">
-          <h3 className="text-lg font-medium text-gray-300">Applied Coupon</h3>
+          <h3 className="text-lg font-medium text-gray-300">Cupom Aplicado</h3>
 
           <p className="mt-2 text-sm text-gray-400">
             {coupon.code} - {coupon.discountPercentage}% off
@@ -82,7 +82,7 @@ const GiftCouponCard = () => {
             whileTap={{ scale: 0.95 }}
             onClick={handleRemoveCoupon}
           >
-            Remove Coupon
+            Remover Cupom
           </motion.button>
         </div>
       )}
@@ -90,10 +90,10 @@ const GiftCouponCard = () => {
       {coupon && (
         <div className="mt-4">
           <h3 className="text-lg font-medium text-gray-300">
-            Your Available Coupon:
+            Seu cupom disponível:
           </h3>
           <p className="mt-2 text-sm text-gray-400">
-            {coupon.code} - {coupon.discountPercentage}% off
+            {coupon.code} - {coupon.discountPercentage}% de desconto
           </p>
         </div>
       )}

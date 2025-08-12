@@ -26,7 +26,7 @@ const Navbar = () => {
               className="text-gray-300 hover:text-emerald-400 transition duration-300
 					 ease-in-out"
             >
-              Home
+              Início
             </Link>
             {user && (
               <Link
@@ -57,7 +57,7 @@ const Navbar = () => {
                 to={"/secret-dashboard"}
               >
                 <Lock className="inline-block mr-1" size={18} />
-                <span className="hidden sm:inline">Dashboard</span>
+                <span className="hidden sm:inline">Painel de Controle</span>
               </Link>
             )}
 
@@ -68,7 +68,7 @@ const Navbar = () => {
                 onClick={logout}
               >
                 <LogOut size={18} />
-                <span className="hidden sm:inline ml-2">Log Out</span>
+                <span className="hidden sm:inline ml-2">Sair</span>
               </button>
             ) : (
               <>
@@ -78,7 +78,7 @@ const Navbar = () => {
 									rounded-md flex items-center transition duration-300 ease-in-out"
                 >
                   <UserPlus className="mr-2" size={18} />
-                  Sign Up
+                  Cadastrar
                 </Link>
                 <Link
                   to={"/login"}
@@ -86,7 +86,7 @@ const Navbar = () => {
 									rounded-md flex items-center transition duration-300 ease-in-out"
                 >
                   <LogIn className="mr-2" size={18} />
-                  Login
+                  Entrar
                 </Link>
               </>
             )}
