@@ -8,7 +8,7 @@ export const protectRoute = async (req, res, next) => {
     // 1. Check if token exists
     if (!accessToken) {
       return res.status(401).json({
-        message: "Por favor, faça login primeiro",
+        message: "Faça login para adicionar produto ao carrinho",
       });
     }
 

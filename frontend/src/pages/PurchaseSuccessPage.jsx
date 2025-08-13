@@ -60,14 +60,15 @@ const PurchaseSuccessPage = () => {
           </h1>
 
           <p className="text-gray-300 text-center mb-2">
-            Obrigado pela conta. Nós estamos processando ela agora.
+            Obrigado por usar nossos serviços! Nós estamos processando sua
+            compra agora.
           </p>
           <p className="text-emerald-400 text-center text-sm mb-6">
             Cheque seu email para mais detalhes e atualizações da compra.
           </p>
           <div className="bg-gray-700 rounded-lg p-4 mb-6">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-gray-400">Order number</span>
+              <span className="text-sm text-gray-400">Código da compra</span>
               <span className="text-sm font-semibold text-emerald-400">
                 #12345
               </span>
@@ -80,19 +81,21 @@ const PurchaseSuccessPage = () => {
                 3-5 dias úteis
               </span>
             </div>
+            <div className="items-center justify-between flex ">
+              <span
+                className="w-full bg-gray-800 text-gray-400 font-bold py-2 px-4
+             rounded-lg transition duration-300 flex items-center justify-center mt-4"
+              >
+                <HandHeart className="mr-2" size={18} />
+                Obrigado por comprar na Loja Kbeu!
+              </span>
+            </div>
           </div>
 
           <div className="space-y-4">
-            <button
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4
-             rounded-lg transition duration-300 flex items-center justify-center"
-            >
-              <HandHeart className="mr-2" size={18} />
-              Obrigado por comprar na Loja Kbeu!
-            </button>
             <Link
               to={"/"}
-              className="w-full bg-gray-700 hover:bg-gray-600 text-emerald-400 font-bold py-2 px-4 
+              className="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-2 px-4 
             rounded-lg transition duration-300 flex items-center justify-center"
             >
               Continuar Comprando
