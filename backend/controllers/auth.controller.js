@@ -94,7 +94,7 @@ export const login = async (req, res) => {
         role: user.role,
       });
     } else {
-      res.status(401).json({ message: "Invalid Email or Password" });
+      res.status(401).json({ message: "Email ou Senha inválidos" });
     }
   } catch (error) {
     console.log("Error in login controller", error.message);
