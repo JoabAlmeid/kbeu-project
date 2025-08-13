@@ -22,15 +22,15 @@ export const useCartStore = create((set, get) => ({
       const response = await axios.post("/coupons/validate", { code });
       set({ coupon: response.data, isCouponApplied: true });
       get().calculateTotals(); //since coupons decrease the value, it must be recalc
-      toast.success("Coupon applied successfully");
+      toast.success("Cupom aplicado com sucesso");
     } catch (error) {
-      toast.error(error.response?.data?.message || "Failed to apply coupon");
+      toast.error(error.response?.data?.message || "Falha em aplicar o cupom");
     }
   },
   removeCoupon: () => {
     set({ coupon: null, isCouponApplied: false });
     get().calculateTotals();
-    toast.success("Coupon removed");
+    toast.success("Cupom removido");
   },
 
   getCartItems: async () => {
@@ -52,7 +52,7 @@ export const useCartStore = create((set, get) => ({
     try {
       //it sends the product to server, and it's ID must match with the one on the db
       await axios.post("/cart", { productId: product._id });
-      toast.success("Product added to cart");
+      toast.success("Produto adicionado no carrinho");
 
       set((prevState) => {
         //check if there's an item in the front and in the db which are the same

@@ -13,7 +13,7 @@ export const userUserStore = create((set, get) => ({
 
     if (password !== confirmPassword) {
       set({ loading: false });
-      return toast.error("Password do not match");
+      return toast.error("Senhas não combinam");
     }
 
     try {
