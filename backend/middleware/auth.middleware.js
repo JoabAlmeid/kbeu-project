@@ -8,7 +8,7 @@ export const protectRoute = async (req, res, next) => {
     // 1. Check if token exists
     if (!accessToken) {
       return res.status(401).json({
-        message: "Unauthorized - No access token provided",
+        message: "Por favor, faça login primeiro",
       });
     }
 
@@ -20,7 +20,7 @@ export const protectRoute = async (req, res, next) => {
 
     if (!user) {
       return res.status(401).json({
-        message: "Unauthorized - User not found",
+        message: "Usuário não encontrado",
       });
     }
 
@@ -32,12 +32,12 @@ export const protectRoute = async (req, res, next) => {
 
     if (error.name === "TokenExpiredError") {
       return res.status(401).json({
-        message: "Unauthorized - Access token expired",
+        message: "Atualize a página e refaça seu login, por favor",
       });
     }
 
     return res.status(401).json({
-      message: "Unauthorized - Invalid access token",
+      message: "Sem Permissão - Token inválido",
     });
   }
 };
@@ -47,7 +47,7 @@ export const adminRoute = async (req, res, next) => {
     next();
   } else {
     return res.status(403).json({
-      message: "Access denied - Admin only",
+      message: "Acesso negado - Apenas Admins",
     });
   }
 };
