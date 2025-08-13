@@ -58,7 +58,7 @@ const LoginPage = () => {
 									rounded-md shadow-sm
 									 placeholder-gray-400 focus:outline-none focus:ring-emerald-500 
 									 focus:border-emerald-500 sm:text-sm"
-                  placeholder="you@example.com"
+                  placeholder="email@gmail.com"
                 />
               </div>
             </div>
@@ -106,7 +106,7 @@ const LoginPage = () => {
               ) : (
                 <>
                   <LogIn className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Login
+                  Entrar
                 </>
               )}
             </button>

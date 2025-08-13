@@ -38,7 +38,7 @@ const Navbar = () => {
                   className="inline-block mr-1 group-hover:text-emerald-400"
                   size={20}
                 />
-                <span className="hidden sm:inline">Cart</span>
+                <span className="hidden sm:inline">Carrinho</span>
                 {cart.length > 0 && (
                   <span
                     className="absolute -top-2 -left-2 bg-emerald-500 text-white rounded-full px-2 py-0.5 

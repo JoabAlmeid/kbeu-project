@@ -46,7 +46,7 @@ const OrderSummary = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <p className="text-xl font-semibold text-emerald-400">Finalizar Compra</p>
+      <p className="text-xl font-semibold text-emerald-400">Resumo da Compra</p>
       <div className="space-y-4">
         <div className="space-y-2">
           <dl className="flex items-center justify-between gap-4">
